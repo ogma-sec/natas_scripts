@@ -1,5 +1,6 @@
 import json
 import re
+import requests
 
 filename = "D:\\DATA\\chall\\natas\\scripts\\natas.json"
 
@@ -127,15 +128,25 @@ def initLevel(n):
 
 def findPasswordInString(s):
 	"""
-		Try to find password in a string based on regex (32 char long string)
+		Try to find password in a string/HTML response based on regex (32 char long string)
 		return
 			- Booelan
 			- string ("X" or password found)
 	"""
 	passFound = False
 	password = "X"
-	challPasswords = re.search('([A-Za-z0-9]{32})', s)
-	if challPasswords:
-		passFound = True	
-		password = str(challPasswords.group(1))
+
+	# if s is  a multi line string :
+	if "\n" in s:
+		HTMLlist=s.split("\n")
+	else:
+		HTMLList = s
+
+	# else (simple string)
+	for line in HTMLlist:
+		challPasswords = re.search('([A-Za-z0-9]{32})', line)
+		if challPasswords:
+			passFound = True	
+			password = str(challPasswords.group(1))
+	
 	return passFound,password
