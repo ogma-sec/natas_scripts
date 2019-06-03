@@ -3,8 +3,6 @@ from requests.auth import HTTPBasicAuth
 import natas
 import re
 
-print("Natas 4")
-
 def findReferer(HTMLResponse):
 	"""
 		Find the Referer in challenge page source code
