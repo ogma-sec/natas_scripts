@@ -135,18 +135,20 @@ def findPasswordInString(s):
 	"""
 	passFound = False
 	password = "X"
-
 	# if s is  a multi line string :
-	if "\n" in s:
+	if "\n" in s:	
 		HTMLlist=s.split("\n")
+		for line in HTMLlist:
+			challPasswords = re.search('([A-Za-z0-9]{32})', line)
+			if challPasswords:
+				passFound = True	
+				password = str(challPasswords.group(1))
 	else:
 		HTMLlist = s
-
-	# else (simple string)
-	for line in HTMLlist:
-		challPasswords = re.search('([A-Za-z0-9]{32})', line)
+		challPasswords = re.search('([A-Za-z0-9]{32})', HTMLlist)
 		if challPasswords:
 			passFound = True	
 			password = str(challPasswords.group(1))
+	
 	
 	return passFound,password
