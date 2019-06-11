@@ -2,7 +2,7 @@ import json
 import re
 import requests
 
-filename = "D:\\DATA\\chall\\natas\\scripts\\natas.json"
+filename = "natas.json"
 
 def updateLevelsDict(levelsList):
 	'''
@@ -140,7 +140,7 @@ def findPasswordInString(s):
 	if "\n" in s:
 		HTMLlist=s.split("\n")
 	else:
-		HTMLList = s
+		HTMLlist = s
 
 	# else (simple string)
 	for line in HTMLlist:
