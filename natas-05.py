@@ -2,8 +2,6 @@ import requests
 from requests.auth import HTTPBasicAuth
 import natas
 
-print("Natas 5")
-
 challNumber = 5
 user, password, url = natas.initLevel(challNumber)
 print("[+] Request to "+url)
